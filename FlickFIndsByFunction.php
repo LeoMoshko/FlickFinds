@@ -100,11 +100,11 @@ function filterMoviesByStartingWith($prefix = 'w', $withSpace = true, $movies = 
 {
     if ($withSpace) {
         return array_filter($movies, function ($title) use ($prefix) {
-            return (str_starts_with($title, strtoupper($prefix)) || str_starts_with($title, strtolower($prefix))) && mb_strlen($title) % 2 == 0;
+            return (stripos($title, $prefix) === 0) && (mb_strlen($title) % 2 == 0);
         });
     } else {
         return array_filter($movies, function ($title) use ($prefix) {
-            return (str_starts_with($title, strtoupper($prefix)) || str_starts_with($title, strtolower($prefix))) && strlen(str_replace(' ', '', $title)) % 2 == 0;
+            return (stripos($title, $prefix) === 0) && strlen(str_replace(' ', '', $title)) % 2 == 0;
         });
     }
 };

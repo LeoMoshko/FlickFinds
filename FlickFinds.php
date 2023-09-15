@@ -93,12 +93,12 @@ $randomsTitles = array_rand(array_flip($movies), 3);
 
 // recomendation by start "w" and even number charters with spase
 $titlesByStartWandEvenNumberWithSpace = array_filter($movies, function ($title) {
-  return (str_starts_with($title, 'W') || str_starts_with($title, 'w')) && mb_strlen($title) % 2 == 0;
+  return (stripos($title, 'w') === 0) && (mb_strlen($title) % 2 == 0);
 });
 
 // recomendation by start "w" and even number charters without spase
 $titlesByStartWandEvenNumberWithOutSpace = array_filter($movies, function ($title) {
-  return (str_starts_with($title, 'W') || str_starts_with($title, 'w')) && strlen(str_replace(' ', '', $title)) % 2 == 0;
+  return (stripos($title, 'w') === 0) && strlen(str_replace(' ', '', $title)) % 2 == 0;
 });
 
 // recomendation by consist of more than 1 word 
@@ -108,7 +108,7 @@ $titlesByConsistOfMoreOneWord = array_filter($movies, function ($title) {
 
 // show on terminal
 echo "1) Losowe filmy: " . implode(', ', $titlesByStartWandEvenNumberWithSpace) . PHP_EOL;
-echo "2.A) Filmy na literę W z parzystą liczbą znaków z uzwgłędnieniem spacji: " . implode(', ', $titlesByStartWandEvenNumberWithOutSpace) . PHP_EOL;
+echo "2.A) Filmy na literę W z parzystą liczbą znaków z uzwgłędnieniem spacji: " . implode(', ', $titlesByStartWandEvenNumberWithSpace) . PHP_EOL;
 echo "2.B) Filmy na literę W z parzystą liczbą znaków bez uzwgłędnienia spacji: " . implode(', ', $titlesByStartWandEvenNumberWithOutSpace) . PHP_EOL;
 echo "3) Filmy z wieloma słowami: " . implode(', ', $titlesByConsistOfMoreOneWord) . PHP_EOL;
 
